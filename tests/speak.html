@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>speakable.jquery Test Suite</title>
+  <!-- Load local jQuery. This can be overridden with a ?jquery=___ param. -->
+  <script src="../libs/jquery-loader.js"></script>
+  <!-- Load local QUnit. -->
+  <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen">
+  <script src="../libs/qunit/qunit.js"></script>
+  <!-- Load local lib and tests. -->
+  <script src="../src/jquery.speakable.js"></script>
+  <script src="speak_test.js"></script>
+  <!-- Removing access to jQuery and $. But it'll still be available as _$, if
+       you REALLY want to mess around with jQuery in the console. REMEMBER WE
+       ARE TESTING A PLUGIN HERE, THIS HELPS ENSURE BEST PRACTICES. REALLY. -->
+  <script>window._$ = jQuery.noConflict(true);</script>
+       <style type="text/css">
+       .speakable {
+           color:blue;
+           text-decoration:underline;
+       }
+      </style>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+  </div>
+  <ul>
+      <li>
+          <h1 class="speakable">Hello World</h1>
+          <pre><code>
+&lt;h1 class=&quot;speakable&quot;&gt;Hello World&lt;/h1&gt;
+          </code></pre>
+      </li>
+      <li>
+          <h1 class="speakable" data-transcript="What is up world?">Hello World</h1>
+          <p><i>What is up world?</i></p>
+          <pre><code>
+&lt;h1 class=&quot;speakable&quot; data-enunciate=&quot;What up world&quot;&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;&lt;i&gt;What up world&lt;/i&gt;&lt;/p&gt;
+          </code></pre>
+      </li>
+      <li>
+          <h1 class="speakable"><span data-enunciate="You Only Live Once">YOLO</span></h1>
+          <p><i>You Only Live Once</i></p>
+          <pre><code>
+&lt;h1 class=&quot;speakable&quot;&gt;&lt;span data-enunciate=&quot;You Only Live Once&quot;&gt;YOLO&lt;/span&gt;&lt;/h1&gt;
+          </code></pre>
+      </li>
+      <li>
+          <h1 class="speakable" data-transcript="fred-story" data-voice="Fred">Hello, my name is Fred.</h1>
+          <p id="fred-story">This is a story by Fred.</p>
+          <pre><code>
+  &lt;h1 class=&quot;speakable&quot; data-transcript=&quot;fred-story&quot; data-voice=&quot;Fred&quot;&gt;Hello, my name is Fred.&lt;/h1&gt;
+  &lt;p id=&quot;fred-story&quot;&gt;This is a story by Fred.&lt;/p&gt;
+          </code></pre>
+      </li>
+      <li>
+          <h1 class="speakable" data-transcript="vicki-story" data-voice="Vicki">Hello, my name is Vicki.</h1>
+          <p id="vicki-story">A Story By Vicki.</p>
+          <pre><code>
+&lt;h1 class=&quot;speakable&quot; data-transcript=&quot;vicki-story&quot; data-voice=&quot;Vicki&quot;&gt;Hello, my name is Vicki.&lt;/h1&gt;
+&lt;p id=&quot;vicki-story&quot;&gt;This is another story by Vicki.&lt;/p&gt;
+          </code></pre>
+      </li>
+      <li>
+          <h1 class="speakable" data-transcript="whisper-story" data-voice="Whisper" data-volume="0.5">Librarian Larry</h1>
+          <p id="whisper-story">Would you please keep it down? People are reading?</p>
+          <pre><code>
+&lt;h1 class=&quot;speakable&quot; data-transcript=&quot;whisper-story&quot; data-voice=&quot;Whisper&quot; data-volume=&quot;0.5&quot;&gt;Librarian Larry&lt;/h1&gt;
+&lt;p id=&quot;whisper-story&quot;&gt;Would you please keep it down? People are reading?&lt;/p&gt;
+          </code></pre>
+      </li>
+      <li>
+          <h1 class="speakable" data-transcript="bacon-story" data-voice="Alex">Bacon</h1>
+          <pre><code>
+&lt;p&gt;Bacon ipsum dolor amet beef&lt;/p&gt;
+&lt;h1 class=&quot;unspeakable&quot; data-voice=&quot;Alex&quot;&gt;NEVER SPEAK OF THIS!!!   &lt;/h1&gt;
+          </code></pre>
+          <div id="bacon-story">
+  <p>Bacon ipsum dolor amet beef</p>
+  <h1 muted>NEVER SPEAK OF THIS</h1>
+  <p> ribs ham hamburger pancetta biltong frankfurter
+    brisket tongue, pork chop andouille sirloin pork flank. Sausage ground round
+    andouille ball tip.</p>
+          </div>
+      </li>
+  </ul>
+  <script>
+  window._$(document).ready(function(){
+      window._$('.speakable').each(function(){
+           window._$(this).speakable({
+               onstart:function(){
+                   console.log('onstart');
+               },
+               onend:function(){
+                   console.log('onend');
+               },
+               onerror:function(){
+                   console.log('onerror');
+               },
+               onpause:function(){
+                   console.log('onpause');
+               },
+               onresume:function(){
+                   console.log('onresume');
+               },
+               onmark:function(){
+                   console.log('onmark');
+               },
+               onboundary:function(){
+                   console.log('onboundary');
+               }
+               
+           }).click(function(){
+              var that = window._$(this);
+              that.data('plugin_speakable').speak();    
+          }).css({cursor:'pointer'});
+          
+      });
+  });
+  </script>
+</body>
+</html>  

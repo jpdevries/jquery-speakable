@@ -1,0 +1,20 @@
+{
+  "name": "jquery-speakable",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jpdevries/jquery-speakable",
+  "authors": [
+    "mail@devries.jp"
+  ],
+  "description": "Easily make HTML elements speakable with this jQuery plugin.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.*.*"
+  }
+}

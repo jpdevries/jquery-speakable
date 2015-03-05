@@ -1,0 +1,26 @@
+{
+  "name": "speakable",
+  "title": "jQuery Speakable Plugin",
+  "description": "Easily make HTML elements speakable with this jQuery plugin.",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jpdevries/jquery-speakable",
+  "author": {
+    "name": "JP DeVries",
+    "email": "mail@devries.jp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jpdevries/jquery-speakable.git"
+  },
+  "bugs": "https://github.com/jpdevries/jquery-speakable/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jpdevries/jquery-speakable/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "keywords": ["HTML5","Speech","SpeechSynthesis","a11y","accessibility"]
+}
